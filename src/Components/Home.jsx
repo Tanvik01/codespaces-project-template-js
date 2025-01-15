@@ -11,37 +11,73 @@ import PropTypes from "prop-types";
 
 /**
  * Home background image
- *
- * Below is a sample image. Upload the image of your choice into the "images"
- * directory and import here for use. Then, set imageAltText to string that 
- * represents what you see in that image.
- *
- *
- * Need an image? Check out https://unsplash.com to download a photo you
- * freely use on your site.
  */
-import image from "../images/pic_bg.jpeg";
+import image from "../images/home_bg.jpg";
 
-const imageAltText = "Adult female in office setting leaning against a glass wall while holding a platinum Microsoft Surface Pro 7 in tablet mode preparing to write with Microsoft Surface Pen";
+const imageAltText = "Modern abstract background";
 
 const Home = ({ name, title }) => {
+  const scrollToNextSection = () => {
+    const aboutSection = document.getElementById('about');
+    aboutSection.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section id="home" className="min-height">
-      <img className="background" src={image} alt="" />
-      <div style={{ position: "absolute", top: "5rem", left: "2rem", width: "17rem" }}>
-        <h1>{name}</h1>
-        <h2>{title}</h2>
+      <img 
+        className="background" 
+        src={image} 
+        alt={imageAltText}
+        style={{
+          objectFit: "cover",
+          objectPosition: "center",
+          filter: "brightness(0.8)"
+        }}
+      />
+      <div style={{ 
+        position: "absolute", 
+        top: "5rem", 
+        left: "2rem", 
+        width: "17rem",
+        zIndex: 1
+      }}>
+        <h1 style={{ 
+          color: "#000000",
+          textShadow: "2px 2px 4px rgba(0, 0, 0, 0.1)",
+          fontSize: "7rem",
+          fontWeight: "400"
+        }}>{name}</h1>
+        <h2 style={{ 
+          color: "#000000",
+          fontSize: "2rem",
+          fontWeight: "400",
+          marginTop: "1rem"
+        }}>{title}</h2>
       </div>
-      <div style={{ position: "absolute", bottom: "3rem", left: "50%" }}>
-        <img src={arrowSvg} style={{ height: "3rem", width: "3rem" }} alt={imageAltText} />
+      <div 
+        onClick={scrollToNextSection}
+        style={{ 
+          position: "absolute", 
+          bottom: "3rem", 
+          left: "50%",
+          transform: "translateX(-50%)",
+          animation: "bounce 2s infinite",
+          cursor: "pointer"
+        }}
+      >
+        <img 
+          src={arrowSvg} 
+          style={{ 
+            height: "3rem", 
+            width: "3rem",
+            filter: "invert(1)",
+            opacity: "0.8"
+          }} 
+          alt="Scroll down" 
+        />
       </div>
     </section>
   );
-};
-
-Home.defaultProps = {
-  name: "",
-  title: "",
 };
 
 Home.propTypes = {

@@ -10,132 +10,181 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import devDotToIcon from "../images/socials/devdotto.svg";
-import envelopeIcon from "../images/socials/envelope.svg";
+// Import your social icons
 import gitHubIcon from "../images/socials/github.svg";
 import instagramIcon from "../images/socials/instagram.svg";
 import linkedInIcon from "../images/socials/linkedin.svg";
-import mediumIcon from "../images/socials/medium.svg";
-import twitterIcon from "../images/socials/twitter.svg";
-import youTubeIcon from "../images/socials/youtube.svg";
+import envelopeIcon from "../images/socials/envelope.svg";
 
-/**
- * 💡 Learning resources
- *
- *  HTML hyperlinks: https://www.w3schools.com/html/html_links.asp
- *  Opening links in new tabs: https://www.freecodecamp.org/news/how-to-use-html-to-open-link-in-new-tab/
- */
-
-const Footer = (props) => {
-  const {
-    devDotTo,
-    email,
-    gitHub,
-    instagram,
-    linkedIn,
-    medium,
-    name,
-    primaryColor,
-    twitter,
-    youTube,
-  } = props;
-
+const Footer = ({ email, gitHub, instagram, linkedIn }) => {
   return (
-    <div
-      id="footer"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: "2.5rem",
-        padding: "5rem 0 3rem",
-        backgroundColor: primaryColor,
-        width: "100vw"
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "2.5rem",
-        }}
-      >
-        {email && (
-          <a href={`mailto:${email}`}>
-            <img src={envelopeIcon} alt="email" className="socialIcon" />
-          </a>
-        )}
-        {devDotTo && (
-          <a href={`https://dev.to/${devDotTo}`} target="_blank" rel="noopener noreferrer">
-            <img src={devDotToIcon} alt="Dev.to" className="socialIcon" />
-          </a>
-        )}
-        {gitHub && (
-          <a href={`https://github.com/${gitHub}`} target="_blank" rel="noopener noreferrer">
-            <img src={gitHubIcon} alt="GitHub" className="socialIcon" />
-          </a>
-        )}
-        {instagram && (
-          <a
-            href={`https://www.instagram.com/${instagram}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src={instagramIcon} alt="Instagram" className="socialIcon" />
-          </a>
-        )}
-        {linkedIn && (
-          <a
-            href={`https://www.linkedin.com/in/${linkedIn}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src={linkedInIcon} alt="LinkedIn" className="socialIcon" />
-          </a>
-        )}
-        {medium && (
-          <a href={`https://medium.com/@${medium}`} target="_blank" rel="noopener noreferrer">
-            <img src={mediumIcon} alt="Medium" className="socialIcon" />
-          </a>
-        )}
-        {twitter && (
-          <a href={`https://twitter.com/${twitter}`} target="_blank" rel="noopener noreferrer">
-            <img src={twitterIcon} alt="Twitter" className="socialIcon" />
-          </a>
-        )}
-        {youTube && (
-          <a
-            href={`https://www.youtube.com/c/${youTube}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src={youTubeIcon} alt="YouTube" className="socialIcon" />
-          </a>
-        )}
+    <footer className="footer-container" style={{
+      background: "linear-gradient(to right, rgba(0, 255, 149, 0.1), rgba(112, 0, 255, 0.1))",
+      padding: "4rem 0",
+      position: "relative",
+      overflow: "hidden"
+    }}>
+      {/* Animated background elements */}
+      <div className="footer-background">
+        {[...Array(5)].map((_, index) => (
+          <div
+            key={index}
+            className="floating-circle"
+            style={{
+              position: "absolute",
+              width: `${Math.random() * 100 + 50}px`,
+              height: `${Math.random() * 100 + 50}px`,
+              background: `linear-gradient(45deg, ${index % 2 ? '#00ff95' : '#7000ff'}33, transparent)`,
+              borderRadius: "50%",
+              filter: "blur(40px)",
+              animation: `float ${Math.random() * 5 + 5}s ease-in-out infinite`,
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              zIndex: 0
+            }}
+          />
+        ))}
       </div>
-      <p className="small" style={{ marginTop: 0, color: "white" }}>
-        Created by {name}
-      </p>
-    </div>
+
+      <div style={{
+        maxWidth: "1200px",
+        margin: "0 auto",
+        padding: "0 2rem",
+        position: "relative",
+        zIndex: 1
+      }}>
+        {/* Social Links Section */}
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "2rem"
+        }}>
+          <h2 style={{
+            fontSize: "2rem",
+            marginBottom: "1rem",
+            background: "linear-gradient(45deg, #00ff95, #7000ff)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent"
+          }}>Let's Connect</h2>
+
+          <div style={{
+            display: "flex",
+            gap: "2rem",
+            flexWrap: "wrap",
+            justifyContent: "center"
+          }}>
+            {gitHub && (
+              <a
+                href={gitHub}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  padding: "0.8rem 1.5rem",
+                  background: "rgba(255, 255, 255, 0.1)",
+                  borderRadius: "25px",
+                  backdropFilter: "blur(10px)",
+                  border: "1px solid rgba(255, 255, 255, 0.2)",
+                  transition: "all 0.3s ease"
+                }}
+              >
+                <img src={gitHubIcon} alt="GitHub" style={{ width: "24px", height: "24px" }} />
+                <span>GitHub</span>
+              </a>
+            )}
+
+            {linkedIn && (
+              <a
+                href={linkedIn}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  padding: "0.8rem 1.5rem",
+                  background: "rgba(255, 255, 255, 0.1)",
+                  borderRadius: "25px",
+                  backdropFilter: "blur(10px)",
+                  border: "1px solid rgba(255, 255, 255, 0.2)",
+                  transition: "all 0.3s ease"
+                }}
+              >
+                <img src={linkedInIcon} alt="LinkedIn" style={{ width: "24px", height: "24px" }} />
+                <span>LinkedIn</span>
+              </a>
+            )}
+
+            {instagram && (
+              <a
+                href={`https://www.instagram.com/${instagram}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  padding: "0.8rem 1.5rem",
+                  background: "rgba(255, 255, 255, 0.1)",
+                  borderRadius: "25px",
+                  backdropFilter: "blur(10px)",
+                  border: "1px solid rgba(255, 255, 255, 0.2)",
+                  transition: "all 0.3s ease"
+                }}
+              >
+                <img src={instagramIcon} alt="Instagram" style={{ width: "24px", height: "24px" }} />
+                <span>Instagram</span>
+              </a>
+            )}
+
+            {email && (
+              <a
+                href={`mailto:${email}`}
+                className="social-link"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  padding: "0.8rem 1.5rem",
+                  background: "rgba(255, 255, 255, 0.1)",
+                  borderRadius: "25px",
+                  backdropFilter: "blur(10px)",
+                  border: "1px solid rgba(255, 255, 255, 0.2)",
+                  transition: "all 0.3s ease"
+                }}
+              >
+                <img src={envelopeIcon} alt="Email" style={{ width: "24px", height: "24px" }} />
+                <span>Email</span>
+              </a>
+            )}
+          </div>
+        </div>
+
+        {/* Copyright Section */}
+        <div style={{
+          marginTop: "4rem",
+          textAlign: "center",
+          color: "var(--text-secondary)",
+          fontSize: "0.9rem"
+        }}>
+          <p>© 2024 Tanvi Kokitkar. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
   );
 };
 
-Footer.defaultProps = {
-  name: "",
-};
-
 Footer.propTypes = {
-  devDotTo: PropTypes.string,
   email: PropTypes.string,
   gitHub: PropTypes.string,
   instagram: PropTypes.string,
   linkedIn: PropTypes.string,
-  medium: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  primaryColor: PropTypes.string,
-  twitter: PropTypes.string,
-  youTube: PropTypes.string,
-
 };
 
 export default Footer;

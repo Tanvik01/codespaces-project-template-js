@@ -4,7 +4,8 @@
  * To contain application wide settings, routes, state, etc.
  */
 
-import React from "react";
+import React, { useEffect } from "react";
+import { addScrollAnimation } from "./utils/scrollAnimation";
 
 import About from "./Components/About";
 import Footer from "./Components/Footer";
@@ -26,16 +27,20 @@ import "./styles.css";
 const siteProps = {
   name: "Tanvi Kokitkar",
   title: "Full Stack Developer",
-  email: "tanvikokitkar30@gmail.com",
+  email: "",
   gitHub: "https://github.com/Tanvik01",
-  instagram: "tanvi__01",
-  linkedIn: "www.linkedin.com/in/tanvi-kokitkar-500bb3242"
+  instagram: "",
+  linkedIn: "https://www.linkedin.com/in/tanvi-kokitkar-500bb3242/"
 };
 
 const primaryColor = "#87d49c";
 const secondaryColor = "#D2F1E4";
 
 const App = () => {
+  useEffect(() => {
+    addScrollAnimation();
+  }, []);
+
   return (
     <div id="main">
       <Header />
